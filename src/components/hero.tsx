@@ -8,8 +8,13 @@ interface Iprop {
 }
 const Hero: FC<Iprop> = ({ src, alt, title }: Iprop) => {
   return (
-    <div>
-      <Image fill={true} src={src} alt={alt} style={{ objectFit: "cover" }} />
+    <div className="relative h-screen">
+      <div className="absolute -z-10 inset-0">
+        <Image fill={true} src={src} alt={alt} style={{ objectFit: "cover" }} />
+      </div>
+      <div className="pt-48 flex justify-center items-center">
+        <div className="text-white text-6xl">{title}</div>
+      </div>
     </div>
   );
 };

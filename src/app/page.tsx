@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <Hero
-        title="Laptop"
+        title="Profitional Cloud Host"
         src="https://picsum.photos/800/600?image=0"
         alt="Laptop"
       />
