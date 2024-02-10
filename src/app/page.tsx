@@ -1,13 +1,12 @@
-import Image from "next/image";
+import Hero from "@/components/hero";
 
 export default function Home() {
   return (
     <div>
-      <Image
-        fill
+      <Hero
+        title="Laptop"
         src="https://picsum.photos/800/600?image=0"
         alt="Laptop"
-        style={{ objectFit: "cover" }}
       />
     </div>
   );

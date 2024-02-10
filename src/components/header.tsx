@@ -4,7 +4,7 @@ import React, { FC } from "react";
 const Header: FC = () => {
   return (
     <div>
-      <Link href="/"></Link>
+      <Link href="/">Home</Link>
       <Link href="/performance">performance</Link>
       <Link href="/reliability">reliability</Link>
       <Link href="/scale">scale</Link>
