@@ -4,10 +4,10 @@ export default function Home() {
   return (
     <div>
       <Image
-        height={600}
-        width={800}
+        fill
         src="https://picsum.photos/800/600?image=0"
         alt="Laptop"
+        style={{ objectFit: "cover" }}
       />
     </div>
   );
