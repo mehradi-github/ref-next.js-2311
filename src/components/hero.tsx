@@ -13,7 +13,7 @@ const Hero: FC<Iprop> = ({ src, alt, title }: Iprop) => {
         <Image fill={true} src={src} alt={alt} style={{ objectFit: "cover" }} />
       </div>
       <div className="pt-48 flex justify-center items-center">
-        <div className="text-white text-6xl">{title}</div>
+        <h1 className="text-white text-6xl">{title}</h1>
       </div>
     </div>
   );
