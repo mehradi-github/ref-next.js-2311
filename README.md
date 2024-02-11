@@ -4,6 +4,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ```sh
 pnpm create next-app@latest
+pnpm add prisma
+pnpx prisma init --datasource-provider sqlite
+
+# datasource db {
+#     provider = "sqlite"
+#     url = env("DATABASE_URL")
+# }
+
+# model Snippet {
+#     id Int  @id @default(autoincrement())
+#     title String
+#     code String
+# }
+
+pnpx prisma migrate dev
 ```
 
 ## Getting Started
