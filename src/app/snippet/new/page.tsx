@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, Fragment } from "react";
 
 const CreateSnippet: FC = () => {
   return (
-    <div>
+    <Fragment>
       <div className="font-bold m-3">
         <div className="flex flex-col gap-4">
           <div className="flex gap-4">
@@ -27,12 +27,12 @@ const CreateSnippet: FC = () => {
               id="code"
             />
           </div>
-          <button className="rounded p-2 pg-blue-200" type="submit">
+          <button className="rounded p-2 bg-blue-200" type="submit">
             Create
           </button>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 export default CreateSnippet;
