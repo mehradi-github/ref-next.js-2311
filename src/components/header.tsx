@@ -3,8 +3,8 @@ import React, { FC } from "react";
 
 const Header: FC = () => {
   return (
-    <div className="w-full absolute text-white z-10">
-      <nav className="container relative flex flex-wrap items-center justify-between mx-auto p-8">
+    <div className="w-full bg-gray-800 text-white z-10">
+      <nav className="container flex flex-wrap items-center justify-between mx-auto px-8 py-4">
         <Link href="/" className="font-bold text-3xl">
           Home
         </Link>
@@ -12,6 +12,7 @@ const Header: FC = () => {
           <Link href="/performance">performance</Link>
           <Link href="/reliability">reliability</Link>
           <Link href="/scale">scale</Link>
+          <Link href="/snippet/new">snippet</Link>
         </div>
       </nav>
     </div>
