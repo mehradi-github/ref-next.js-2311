@@ -14,6 +14,7 @@ const page = async (props: SnippetShowPageProps) => {
   if (!snippet) {
     return notFound();
   }
-  return <div>page</div>;
+
+  return <div key={snippet.id}>{snippet.title}</div>;
 };
 export default page;
