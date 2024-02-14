@@ -15,7 +15,7 @@ const CreateSnippetPage = () => {
     });
 
     console.log(snippet);
-    redirect("/");
+    redirect("/snippet");
   };
   return (
     <form action={CreateSnippet}>
