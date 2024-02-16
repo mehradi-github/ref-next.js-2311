@@ -12,7 +12,7 @@ const Header: FC = () => {
           <Link href="/performance">performance</Link>
           <Link href="/reliability">reliability</Link>
           <Link href="/scale">scale</Link>
-          <Link href="/snippet">snippet</Link>
+          <Link href="/snippets">snippets</Link>
         </div>
       </nav>
     </div>
