@@ -10,7 +10,7 @@ const page = async () => {
       >
         <div>{s.title}</div>
         <div>
-          <Link href={`/snippet/${s.id}`}>view</Link>{" "}
+          <Link href={`/snippets/${s.id}`}>view</Link>{" "}
         </div>
       </div>
     );
@@ -19,7 +19,7 @@ const page = async () => {
     <div>
       <div className="flex m-2 justify-between items-center">
         <h1 className="font-bold text-xl">Snippets</h1>
-        <Link href="/snippet/new" className="border p-2 rounded ">
+        <Link href="/snippets/new" className="border p-2 rounded ">
           New
         </Link>
       </div>
