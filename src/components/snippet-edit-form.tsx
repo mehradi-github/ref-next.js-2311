@@ -2,11 +2,14 @@
 import type { Snippet } from "@prisma/client";
 import Editor from "@monaco-editor/react";
 import { useState } from "react";
+import * as actions from "@/actions";
 interface SnippetEditFormProp {
   snippet: Snippet;
 }
 const SnippetEditForm = ({ snippet }: SnippetEditFormProp) => {
   const [code, setCode] = useState(snippet.code);
+
+  const editSnippetAction = actions.editSnippet.bind(null, snippet.id, code);
   return (
     <div>
       <Editor
