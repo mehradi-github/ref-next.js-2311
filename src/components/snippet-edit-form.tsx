@@ -22,6 +22,11 @@ const SnippetEditForm = ({ snippet }: SnippetEditFormProp) => {
           setCode(v);
         }}
       />
+      <form action={editSnippetAction}>
+        <button type="submit" className="p-2 border rounded">
+          Save
+        </button>
+      </form>
     </div>
   );
 };
