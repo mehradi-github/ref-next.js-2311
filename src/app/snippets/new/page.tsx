@@ -1,3 +1,4 @@
+"use client";
 import { redirect } from "next/navigation";
 import { db } from "@/db";
 import { useFormState } from "react-dom";
@@ -31,6 +32,7 @@ const CreateSnippetPage = () => {
             id="code"
           />
         </div>
+        {formState ? formState.msg : null}
         <button className="rounded p-2 bg-blue-800 text-white" type="submit">
           Create
         </button>
