@@ -32,7 +32,11 @@ const CreateSnippetPage = () => {
             id="code"
           />
         </div>
-        {formState ? formState.msg : null}
+        {formState ? (
+          <div className="my-2 p-2 bg-red-200 border rounded border-red-400">
+            {formState.msg}
+          </div>
+        ) : null}
         <button className="rounded p-2 bg-blue-800 text-white" type="submit">
           Create
         </button>
