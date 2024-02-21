@@ -22,20 +22,23 @@ export const CreateSnippet = async (
   formState: { msg: string },
   formData: FormData
 ) => {
-  const title = formData.get("title") as string;
-  const code = formData.get("code") as string;
+  try {
+    const title = formData.get("title") as string;
+    const code = formData.get("code") as string;
 
-  if (typeof title !== "string" || title.length < 3)
-    return { msg: "Title must be longer." };
-  if (typeof code !== "string" || title.length < 5)
-    return { msg: "Code must be longer." };
-  const snippet = await db.snippet.create({
-    data: {
-      title,
-      code,
-    },
-  });
-
-  console.log(snippet);
+    if (typeof title !== "string" || title.length < 3)
+      return { msg: "Title must be longer." };
+    if (typeof code !== "string" || title.length < 5)
+      return { msg: "Code must be longer." };
+    const snippet = await db.snippet.create({
+      data: {
+        title,
+        code,
+      },
+    });
+  } catch (err: unknown) {
+    if (err instanceof Error) return err.message;
+    else return "Somthing went wrong ...";
+  }
   redirect("/snippet");
 };
