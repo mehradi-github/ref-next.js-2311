@@ -28,7 +28,7 @@ export const CreateSnippet = async (
 
     if (typeof title !== "string" || title.length < 3)
       return { msg: "Title must be longer." };
-    if (typeof code !== "string" || title.length < 5)
+    if (typeof code !== "string" || code.length < 4)
       return { msg: "Code must be longer." };
     const snippet = await db.snippet.create({
       data: {
@@ -37,8 +37,8 @@ export const CreateSnippet = async (
       },
     });
   } catch (err: unknown) {
-    if (err instanceof Error) return err.message;
-    else return "Somthing went wrong ...";
+    if (err instanceof Error) return { msg: err.message };
+    else return { msg: "Somthing went wrong ..." };
   }
-  redirect("/snippet");
+  redirect("/snippets");
 };
