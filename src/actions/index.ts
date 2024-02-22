@@ -1,5 +1,6 @@
 "use server";
 import { db } from "@/db";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const editSnippet = async (id: number, code: string) => {
@@ -8,6 +9,7 @@ export const editSnippet = async (id: number, code: string) => {
     where: { id },
     data: { code },
   });
+  revalidatePath(`/snippets/${id}`);
   redirect(`/snippets/${id}`);
 };
 
@@ -15,6 +17,7 @@ export const deleteSnippet = async (id: number) => {
   await db.snippet.delete({
     where: { id },
   });
+  revalidatePath(`/snippets/${id}`);
   redirect(`/snippets/${id}`);
 };
 
@@ -40,5 +43,6 @@ export const CreateSnippet = async (
     if (err instanceof Error) return { msg: err.message };
     else return { msg: "Somthing went wrong ..." };
   }
+  revalidatePath("/snippets");
   redirect("/snippets");
 };
