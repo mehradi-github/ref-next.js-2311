@@ -13,6 +13,7 @@ const Header: FC = () => {
           <Link href="/reliability">reliability</Link>
           <Link href="/scale">scale</Link>
           <Link href="/snippets">snippets</Link>
+          <Link href="/discuss">discuss</Link>
         </div>
       </nav>
     </div>
