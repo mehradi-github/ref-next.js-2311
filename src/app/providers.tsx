@@ -6,6 +6,6 @@ interface ProvidersProps {
 }
 
 const Providers = ({ children }: ProvidersProps) => {
-  <NextUIProvider>{children}</NextUIProvider>;
+  return <NextUIProvider>{children}</NextUIProvider>;
 };
 export default Providers;
