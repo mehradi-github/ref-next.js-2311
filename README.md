@@ -21,6 +21,36 @@ pnpx prisma init --datasource-provider sqlite
 pnpx prisma migrate dev
 ```
 
+### Adding NextUI
+
+```sh
+pnpm add @nextui-org/react framer-motion
+```
+
+```js
+// tailwind.config.js
+const { nextui } = require("@nextui-org/react");
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    // ...
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  darkMode: "class",
+  plugins: [nextui()],
+};
+```
+
+If you are using pnpm, you need to add the following code to your .npmrc file:
+
+```
+public-hoist-pattern[]=*@nextui-org/*
+```
+
 ## Getting Started
 
 First, run the development server:
