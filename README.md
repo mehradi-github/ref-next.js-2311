@@ -51,6 +51,10 @@ If you are using pnpm, you need to add the following code to your .npmrc file:
 public-hoist-pattern[]=*@nextui-org/*
 ```
 
+### Authentication with NextAuth
+
+Register a new OAuth application: [https://github.com/settings/applications/new](https://github.com/settings/applications/new)
+
 ## Getting Started
 
 First, run the development server:
