@@ -1,4 +1,5 @@
 "use server";
+import * as auth from "@/auth";
 import { db } from "@/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -45,4 +46,12 @@ export const CreateSnippet = async (
   }
   revalidatePath("/snippets");
   redirect("/snippets");
+};
+
+export const signIn = async () => {
+  return auth.signIn("github");
+};
+
+export const signOut = async () => {
+  return auth.signOut("github");
 };
