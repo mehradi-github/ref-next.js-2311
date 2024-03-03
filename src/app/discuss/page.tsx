@@ -1,8 +1,13 @@
+import { auth } from "@/auth";
 import { Button } from "@nextui-org/react";
-const page = () => {
+import * as actions from "@/actions";
+const page = async () => {
+  const session = await auth();
   return (
     <div>
-      <Button>Click me</Button>
+      <form action={actions.signIn}>
+        <Button type="submit">Sign In</Button>
+      </form>
     </div>
   );
 };
