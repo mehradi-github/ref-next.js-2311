@@ -11,6 +11,11 @@ const page = async () => {
       <form action={actions.signOut}>
         <Button type="submit">Sign Out</Button>
       </form>
+      {session?.user ? (
+        <div>{JSON.stringify(session.user)}</div>
+      ) : (
+        <div> Sign Out</div>
+      )}
     </div>
   );
 };
