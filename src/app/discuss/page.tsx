@@ -8,6 +8,9 @@ const page = async () => {
       <form action={actions.signIn}>
         <Button type="submit">Sign In</Button>
       </form>
+      <form action={actions.signOut}>
+        <Button type="submit">Sign Out</Button>
+      </form>
     </div>
   );
 };
