@@ -53,5 +53,5 @@ export const signIn = async () => {
 };
 
 export const signOut = async () => {
-  return auth.signOut("github");
+  return auth.signOut();
 };
