@@ -1,13 +1,12 @@
 import type { NextAuthOptions } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const options: NextAuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET as string,
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -23,10 +22,10 @@ export const options: NextAuthOptions = {
           placeholder: "password",
         },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
+        // Docs: https://next-auth.js.org/configuration/providers/credentials
         const user = { id: "1", name: "test", password: "pass" };
 
-        console.log(JSON.stringify(credentials));
         if (
           credentials?.username === user.name &&
           credentials?.password === user.password
@@ -38,14 +37,4 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
-  callbacks: {
-    // Usually not needed, here we are fixing a bug in nextauth
-    async session({ session, user }: any) {
-      if (session && user) {
-        session.user.id = user.id;
-      }
-
-      return session;
-    },
-  },
 };
