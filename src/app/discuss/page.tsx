@@ -1,16 +1,20 @@
-import { auth } from "@/auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 import { Button } from "@nextui-org/react";
 import * as actions from "@/actions";
 const page = async () => {
-  const session = await auth();
+  const session = await getServerSession(options);
+  if (!session) redirect("/api/auth/signin?callbackUrl=/discuss");
+
   return (
     <div>
-      <form action={actions.signIn}>
+      {/* <form action={actions.signIn}>
         <Button type="submit">Sign In</Button>
       </form>
       <form action={actions.signOut}>
         <Button type="submit">Sign Out</Button>
-      </form>
+      </form> */}
       {session?.user ? (
         <div>{JSON.stringify(session.user)}</div>
       ) : (
