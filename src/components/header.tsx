@@ -14,6 +14,9 @@ const Header: FC = () => {
           <Link href="/scale">scale</Link>
           <Link href="/snippets">snippets</Link>
           <Link href="/discuss">discuss</Link>
+
+          <Link href="/api/auth/signin">Sign In</Link>
+          <Link href="/api/auth/signout">Sign Out</Link>
         </div>
       </nav>
     </div>
