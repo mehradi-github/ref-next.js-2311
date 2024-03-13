@@ -1,5 +1,4 @@
 "use client";
-import { options } from "@/app/api/auth/[...nextauth]/options";
 import {
   Avatar,
   Dropdown,
@@ -31,6 +30,44 @@ const Header = () => {
     { title: "discuss", href: "/discuss" },
   ];
 
+  let avatarNav: React.ReactNode;
+  if (session.data?.user) {
+    avatarNav = (
+      <Avatar
+        isBordered
+        as="button"
+        className="transition-transform"
+        color="secondary"
+        name={session.data?.user?.name || ""}
+        size="sm"
+        src={session.data?.user?.image || ""}
+      />
+    );
+  } else {
+    avatarNav = <Avatar />;
+  }
+
+  let authNav: React.ReactNode;
+  if (session.data?.user) {
+    authNav = (
+      <DropdownSection>
+        <DropdownItem key="profile" className="h-14 gap-2">
+          <p className="font-semibold">Signed in as</p>
+          <p className="font-semibold">{session.data?.user?.email || ""}</p>
+        </DropdownItem>
+        <DropdownItem key="signout" color="danger">
+          <Link href="/api/auth/signout">Sign Out</Link>
+        </DropdownItem>
+      </DropdownSection>
+    );
+  } else {
+    authNav = (
+      <DropdownItem key="signin">
+        <Link href="/api/auth/signin">Sign In</Link>
+      </DropdownItem>
+    );
+  }
+
   return (
     <Navbar>
       <NavbarContent justify="start">
@@ -56,37 +93,9 @@ const Header = () => {
       </NavbarContent> */}
       <NavbarContent as="div" justify="end">
         <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            {session.data?.user ? (
-              <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                color="secondary"
-                name="Jason Hughes"
-                size="sm"
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-              />
-            ) : (
-              <Avatar />
-            )}
-          </DropdownTrigger>
+          <DropdownTrigger>{avatarNav}</DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
-            {session.data?.user ? (
-              <DropdownSection>
-                <DropdownItem key="profile" className="h-14 gap-2">
-                  <p className="font-semibold">Signed in as</p>
-                  <p className="font-semibold">zoey@example.com</p>
-                </DropdownItem>
-                <DropdownItem key="signout" color="danger">
-                  <Link href="/api/auth/signout">Sign Out</Link>
-                </DropdownItem>
-              </DropdownSection>
-            ) : (
-              <DropdownItem key="signin">
-                <Link href="/api/auth/signin">Sign In</Link>
-              </DropdownItem>
-            )}
+            {authNav}
           </DropdownMenu>
         </Dropdown>
       </NavbarContent>
