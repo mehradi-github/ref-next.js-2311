@@ -1,6 +1,4 @@
 export { CreateSnippet, editSnippet, deleteSnippet } from "./snippet";
-export { signIn } from "./sign-in";
-export { signOut } from "./sign-out";
 
 export { createTopic } from "./create-topic";
 export { createPost } from "./create-post";
