@@ -17,6 +17,7 @@ const HeaderMenu = ({}) => {
     { title: "scale", href: "/scale" },
     { title: "snippets", href: "/snippets" },
     { title: "discuss", href: "/discuss" },
+    { title: "topics", href: "/topics" },
   ];
   return (
     <NavbarItem>
