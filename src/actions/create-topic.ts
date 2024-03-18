@@ -1,6 +1,11 @@
 "use server";
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import { db } from "@/db";
+import paths from "@/paths";
+import { Topic } from "@prisma/client";
 import { getServerSession } from "next-auth";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 const createTopicSchema = z.object({
   name: z
@@ -9,13 +14,13 @@ const createTopicSchema = z.object({
     .regex(/^[a-z-]+$/, {
       message: "Must be lowercase or dashes without spaces",
     }),
-  discription: z.string().min(10),
+  description: z.string().min(10),
 });
 
 interface CreateTopicFormState {
   errors: {
     name: string[] | undefined;
-    discription: string[] | undefined;
+    description: string[] | undefined;
     _form: string[] | undefined;
   };
 }
@@ -33,12 +38,36 @@ export const createTopic: Promise<CreateTopicFormState> = async (
 
   const result = createTopicSchema.safeParse({
     name: formData.get("name"),
-    discription: formData.get("discription"),
+    description: formData.get("description"),
   });
 
   if (!result.success) {
     return { errors: result.error.flatten().fieldErrors };
   }
 
-  return { errors: {} };
+  let topic: Topic;
+  try {
+    topic = await db.topic.create({
+      data: {
+        slug: result.data.name,
+        description: result.data.description,
+      },
+    });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      return {
+        errors: {
+          _form: [err.message],
+        },
+      };
+    } else {
+      return {
+        errors: {
+          _form: ["Something went wrong."],
+        },
+      };
+    }
+  }
+  revalidatePath("/");
+  redirect(paths.topicShow(topic.slug));
 };

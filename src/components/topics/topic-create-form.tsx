@@ -30,12 +30,12 @@ const TopicCreateForm = ({}) => {
               errorMessage={formState.errors.name?.join(", ")}
             />
             <Textarea
-              name="discription"
-              label="Discription"
+              name="description"
+              label="description"
               labelPlacement="outside"
               placeholder="Descripe your Topic"
-              isInvalid={!!formState.errors.discription}
-              errorMessage={formState.errors.discription?.join(", ")}
+              isInvalid={!!formState.errors.description}
+              errorMessage={formState.errors.description?.join(", ")}
             />
             {formState.errors._form ? (
               <div className="p-2 bg-red-200 border border-red-400">
