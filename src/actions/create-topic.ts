@@ -16,6 +16,6 @@ export const createTopic = async (formData: FormData) => {
   });
 
   if (!result.success) {
-    console.log(result.error);
+    console.log(result.error.flatten().fieldErrors);
   }
 };
