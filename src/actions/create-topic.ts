@@ -9,13 +9,25 @@ const createTopicSchema = z.object({
     }),
   discription: z.string().min(10),
 });
-export const createTopic = async (formData: FormData) => {
+
+interface CreateTopicFormState {
+  errors: {
+    name: string[] | undefined;
+    discription: string[] | undefined;
+  };
+}
+export const createTopic: Promise<CreateTopicFormState> = async (
+  formState: CreateTopicFormState,
+  formData: FormData
+) => {
   const result = createTopicSchema.safeParse({
     name: formData.get("name"),
     discription: formData.get("discription"),
   });
 
   if (!result.success) {
-    console.log(result.error.flatten().fieldErrors);
+    return { errors: result.error.flatten().fieldErrors };
   }
+
+  return { errors: {} };
 };
