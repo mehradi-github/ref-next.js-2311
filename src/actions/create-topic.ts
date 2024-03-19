@@ -6,6 +6,7 @@ import { Topic } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { resolve } from "path";
 import { z } from "zod";
 const createTopicSchema = z.object({
   name: z
@@ -28,6 +29,8 @@ export const createTopic: Promise<CreateTopicFormState> = async (
   formState: CreateTopicFormState,
   formData: FormData
 ) => {
+  await new Promise((resolve) => setTimeout(resolve, 2500));
+
   const session = await getServerSession(options);
   if (!session || !session.user)
     return {
