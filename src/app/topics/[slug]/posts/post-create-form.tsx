@@ -41,6 +41,9 @@ const PostCreateForm = ({}) => {
               isInvalid={!!formState.errors.content}
               errorMessage={formState.errors.content?.join(", ")}
             />
+            {formState.errors._form ? (
+              <div>{formState.errors._form.join(", ")}</div>
+            ) : null}
             <FormButton>Create Post</FormButton>
           </div>
         </form>
