@@ -20,15 +20,15 @@ const createTopicSchema = z.object({
 
 interface CreateTopicFormState {
   errors: {
-    name: string[] | undefined;
-    description: string[] | undefined;
-    _form: string[] | undefined;
+    name?: string[];
+    description?: string[];
+    _form?: string[];
   };
 }
-export const createTopic: Promise<CreateTopicFormState> = async (
+export const createTopic = async (
   formState: CreateTopicFormState,
   formData: FormData
-) => {
+): Promise<CreateTopicFormState> => {
   await new Promise((resolve) => setTimeout(resolve, 2500));
 
   const session = await getServerSession(options);
