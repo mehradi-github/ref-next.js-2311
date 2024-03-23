@@ -13,10 +13,16 @@ import * as actions from "@/actions";
 import { useFormState } from "react-dom";
 import { CreatePostFormState } from "@/actions/create-post";
 
-const PostCreateForm = ({}) => {
-  const [formState, action] = useFormState(actions.createPost, {
-    errors: {},
-  } as CreatePostFormState);
+interface PostCreateFormProps {
+  slug: string;
+}
+const PostCreateForm = ({ slug }: PostCreateFormProps) => {
+  const [formState, action] = useFormState(
+    actions.createPost.bind(null, slug),
+    {
+      errors: {},
+    } as CreatePostFormState
+  );
   return (
     <Popover>
       <PopoverTrigger>
