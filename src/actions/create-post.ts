@@ -2,8 +2,11 @@
 
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { db } from "@/db";
+import paths from "@/paths";
 import { Post } from "@prisma/client";
 import { getServerSession } from "next-auth";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export interface CreatePostFormState {
@@ -47,6 +50,31 @@ export const createPost = async (
   if (!topic) {
     return { errors: { _form: ["Connot fint Topic"] } };
   }
-
-  return { errors: {} };
+  let post: Post;
+  try {
+    post = await db.post.create({
+      data: {
+        title: result.data.title,
+        content: result.data.content,
+        userId: session.user.id,
+        topicId: topic.id,
+      },
+    });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      return {
+        errors: {
+          _form: [err.message],
+        },
+      };
+    } else {
+      return {
+        errors: {
+          _form: ["Failed to create post"],
+        },
+      };
+    }
+  }
+  revalidatePath(paths.topicShow(slug));
+  redirect(paths.postShow(slug, post.id));
 };
