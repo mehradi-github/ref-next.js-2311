@@ -52,6 +52,7 @@ export const createPost = async (
   }
   let post: Post;
   try {
+    console.log(JSON.stringify(session));
     post = await db.post.create({
       data: {
         title: result.data.title,
